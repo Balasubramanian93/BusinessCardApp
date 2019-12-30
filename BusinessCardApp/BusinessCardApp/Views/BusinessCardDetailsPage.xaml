@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:BusinessCardApp.ViewModels"
+             xmlns:syncfusioncore="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
+             xmlns:sfnumericupdown="clr-namespace:Syncfusion.SfNumericUpDown.XForms;assembly=Syncfusion.SfNumericUpDown.XForms"
+             mc:Ignorable="d"
+             NavigationPage.HasNavigationBar="True"
+             BackgroundColor="White"
+             Title="Card Details"
+             x:Class="BusinessCardApp.Views.BusinessCardDetailsPage">
+    <ContentPage.BindingContext>
+        <viewModels:BusinessCardDetailsPageViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Orientation="Vertical" Spacing="10" Padding="20">
+
+                <syncfusioncore:SfTextInputLayout x:Name="EmployeeID" Hint="Employee ID/Name"                                              >
+                    <syncfusioncore:SfTextInputLayout.InputView>
+                        <Entry Text="{Binding EmployeeID}" PlaceholderColor="#00695B"/>
+                    </syncfusioncore:SfTextInputLayout.InputView>
+                </syncfusioncore:SfTextInputLayout>
+
+
+
+                <syncfusioncore:SfTextInputLayout x:Name="Department" Hint="Department/LOB">
+                    <syncfusioncore:SfTextInputLayout.InputView>
+                        <Entry Text="{Binding Department}" PlaceholderColor="#00695B"/>
+                    </syncfusioncore:SfTextInputLayout.InputView>
+                </syncfusioncore:SfTextInputLayout>
+
+
+                <syncfusioncore:SfTextInputLayout x:Name="Location" Hint="Location">
+                    <syncfusioncore:SfTextInputLayout.InputView>
+                        <Entry Text="{Binding Location}" PlaceholderColor="#00695B"/>
+                    </syncfusioncore:SfTextInputLayout.InputView>
+                </syncfusioncore:SfTextInputLayout>
+
+                <syncfusioncore:SfTextInputLayout x:Name="Designation" Hint="Designation">
+                    <syncfusioncore:SfTextInputLayout.InputView>
+                        <Entry Text="{Binding Designation}" PlaceholderColor="#00695B"/>
+                    </syncfusioncore:SfTextInputLayout.InputView>
+                </syncfusioncore:SfTextInputLayout>
+
+                <syncfusioncore:SfTextInputLayout x:Name="EmailID" Hint="Email ID">
+                    <syncfusioncore:SfTextInputLayout.InputView>
+                        <Entry Text="{Binding EmailID}" PlaceholderColor="#00695B"/>
+                    </syncfusioncore:SfTextInputLayout.InputView>
+                </syncfusioncore:SfTextInputLayout>
+
+                <syncfusioncore:SfTextInputLayout x:Name="Fax" Hint="Fax Number">
+                    <syncfusioncore:SfTextInputLayout.InputView>
+                        <Entry Text="{Binding Fax}" PlaceholderColor="#00695B"/>
+                    </syncfusioncore:SfTextInputLayout.InputView>
+                </syncfusioncore:SfTextInputLayout>
+
+                <syncfusioncore:SfTextInputLayout x:Name="Telephone" Hint="Telephone Number">
+                    <syncfusioncore:SfTextInputLayout.InputView>
+                        <Entry Text="{Binding Telephone}" PlaceholderColor="#00695B"/>
+                    </syncfusioncore:SfTextInputLayout.InputView>
+                </syncfusioncore:SfTextInputLayout>
+
+
+                <syncfusioncore:SfTextInputLayout x:Name="Mobile" Hint="Mobile Number">
+                    <syncfusioncore:SfTextInputLayout.InputView>
+                        <Entry Text="{Binding MobileNumber}" PlaceholderColor="#00695B"/>
+                    </syncfusioncore:SfTextInputLayout.InputView>
+                </syncfusioncore:SfTextInputLayout>
+
+                <syncfusioncore:SfTextInputLayout x:Name="Address" Hint="Address">
+                    <syncfusioncore:SfTextInputLayout.InputView>
+                        <Editor Text="{Binding Address}"  HeightRequest="100" PlaceholderColor="#00695B"/>
+                    </syncfusioncore:SfTextInputLayout.InputView>
+                </syncfusioncore:SfTextInputLayout>
+
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="No of cards" VerticalOptions="Center"/>
+                    <sfnumericupdown:SfNumericUpDown WidthRequest="150" HorizontalOptions="Start" FormatString="n" SpinButtonAlignment="Both" VerticalOptions="Center" Value="50"/>
+                </StackLayout>
+
+                <syncfusioncore:SfTextInputLayout x:Name="Remarks" Hint="Remarks" >
+                    <syncfusioncore:SfTextInputLayout.InputView>
+                        <Editor Text="{Binding Remarks}" HeightRequest="100" PlaceholderColor="#00695B"/>
+                    </syncfusioncore:SfTextInputLayout.InputView>
+                </syncfusioncore:SfTextInputLayout>
+
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Vendors" VerticalOptions="Center" TextColor="#00695B"/>
+                    <Picker ItemsSource="{Binding VendorsList}" SelectedIndex="{Binding SelectedIndex}" HorizontalOptions="Start" VerticalOptions="Center"/>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Status" VerticalOptions="Center" TextColor="#00695B"/>
+                    <Picker ItemsSource="{Binding StatusList}" SelectedIndex="0" HorizontalOptions="Start" VerticalOptions="Center"/>
+                </StackLayout>
+
+                <syncfusioncore:SfTextInputLayout x:Name="ApprovalRemark" Hint="Approval Remarks" HeightRequest="100">
+                    <syncfusioncore:SfTextInputLayout.InputView>
+                        <Entry Text="{Binding ApprovalRemarks}" PlaceholderColor="#00695B"/>
+                    </syncfusioncore:SfTextInputLayout.InputView>
+                </syncfusioncore:SfTextInputLayout>
+
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                    <Button Text="Save" CornerRadius="5" BorderColor="Black" VerticalOptions="Center" BackgroundColor="#00695B" TextColor="White" Clicked="Button_Clicked"/>
+                    <Button Text="Cancel" CornerRadius="5" BorderColor="Black" VerticalOptions="Center" BackgroundColor="#00695B" TextColor="White" Clicked="Button_Clicked_1"/>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

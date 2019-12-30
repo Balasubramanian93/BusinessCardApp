@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:syncfusioncore="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
+             xmlns:sfavatar="clr-namespace:Syncfusion.XForms.AvatarView;assembly=Syncfusion.Core.XForms"
+             xmlns:viewmodel="clr-namespace:BusinessCardApp.ViewModels"
+             x:Class="BusinessCardApp.Views.UserAccountPage" Title="Account" BackgroundColor="White">
+    <ContentPage.BindingContext>
+        <viewmodel:UserAccountViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout Padding="20" Spacing="20">
+            <sfavatar:SfAvatarView ContentType="Initials"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center"
+                               InitialsType="SingleCharacter"
+                               AvatarName="Alex"
+                               InitialsColor="White" 
+                               WidthRequest="50"
+                               FontAttributes="Bold"
+                               HeightRequest="50"
+                               CornerRadius="25"          
+                               BackgroundColor="#00695B"/>
+
+            <syncfusioncore:SfTextInputLayout Hint="Username">
+                <syncfusioncore:SfTextInputLayout.InputView>
+                    <Entry Text="{Binding UserName}" IsEnabled="false"/>
+                </syncfusioncore:SfTextInputLayout.InputView>
+            </syncfusioncore:SfTextInputLayout>
+
+            <syncfusioncore:SfTextInputLayout Hint="EmailID">
+                <syncfusioncore:SfTextInputLayout.InputView>
+                    <Entry Text="{Binding EmailID}" IsEnabled="false"/>
+                </syncfusioncore:SfTextInputLayout.InputView>
+            </syncfusioncore:SfTextInputLayout>
+
+            <syncfusioncore:SfTextInputLayout Hint="MobileNumber">
+                <syncfusioncore:SfTextInputLayout.InputView>
+                    <Entry Text="{Binding MobileNumber}" IsEnabled="false"/>
+                </syncfusioncore:SfTextInputLayout.InputView>
+            </syncfusioncore:SfTextInputLayout>
+            
+            <syncfusioncore:SfTextInputLayout Hint="Company">
+                <syncfusioncore:SfTextInputLayout.InputView>
+                    <Entry Text="{Binding Company}" IsEnabled="false"/>
+                </syncfusioncore:SfTextInputLayout.InputView>
+            </syncfusioncore:SfTextInputLayout>
+            
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

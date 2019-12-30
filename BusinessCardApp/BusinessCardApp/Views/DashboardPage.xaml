@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:syncfusioncore="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
+             xmlns:syncfusioncombobox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms"
+             xmlns:syncfusioncards="clr-namespace:Syncfusion.XForms.Cards;assembly=Syncfusion.Cards.XForms"
+             xmlns:syncfusioncharts="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms"
+             xmlns:local="clr-namespace:BusinessCardApp.ViewModels"
+             xmlns:converters="clr-namespace:BusinessCardApp.Converter"
+             mc:Ignorable="d"
+             x:Class="BusinessCardApp.Views.DashboardPage"
+             Title="Dashboard"
+             NavigationPage.HasNavigationBar="True"
+             BackgroundColor="White">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:DataMarkerConverter x:Key="converter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.BindingContext>
+        <local:DashboardPageViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <Grid Padding="20" RowSpacing="10" BackgroundColor="White">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <syncfusioncore:SfTextInputLayout x:Name="Filter" Hint="Filter" Grid.Row="0">
+                <syncfusioncombobox:SfComboBox  ComboBoxSource="{Binding VendorList}" SelectedIndex="0"/>
+            </syncfusioncore:SfTextInputLayout>
+            <ScrollView Grid.Row="1">
+                <StackLayout Orientation="Vertical" Spacing="10">
+                    <Frame HasShadow="True">
+                    <syncfusioncharts:SfChart x:Name="VendorChart" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <syncfusioncharts:SfChart.Title>
+                            <syncfusioncharts:ChartTitle Text="Vendor List" TextAlignment="Start" FontAttributes="Bold" FontSize="18"/>
+                        </syncfusioncharts:SfChart.Title>
+                        <syncfusioncharts:SfChart.BindingContext>
+                            <local:DashboardPageViewModel />
+                        </syncfusioncharts:SfChart.BindingContext>
+                        <syncfusioncharts:SfChart.ChartBehaviors>
+                            <syncfusioncharts:ChartTooltipBehavior />
+                        </syncfusioncharts:SfChart.ChartBehaviors>
+                        <syncfusioncharts:SfChart.Legend>
+                            <syncfusioncharts:ChartLegend IconHeight="14" IconWidth="14" OverflowMode="Wrap" DockPosition="Top" ToggleSeriesVisibility="True"/>
+                        </syncfusioncharts:SfChart.Legend>
+                        <syncfusioncharts:SfChart.Series>
+                            <syncfusioncharts:PieSeries x:Name="VendorPieSeries" EnableAnimation="True" ExplodeOnTouch="True" ItemsSource="{Binding VendorData}" XBindingPath="VendorName" YBindingPath="Requests">
+                                <syncfusioncharts:PieSeries.ColorModel>
+                                    <syncfusioncharts:ChartColorModel Palette="Natural"/>
+                                </syncfusioncharts:PieSeries.ColorModel>
+                                
+                                <syncfusioncharts:PieSeries.DataMarker>
+                                    <syncfusioncharts:ChartDataMarker>
+                                        <syncfusioncharts:ChartDataMarker.LabelTemplate>
+                                            <DataTemplate>
+                                                <StackLayout Orientation="Vertical">
+                                                    <Label FontSize="12" TextColor="White" HorizontalOptions="CenterAndExpand" Text="{Binding Converter={StaticResource converter}, ConverterParameter='Label'}"/>
+                                                    <Label FontSize="12" TextColor="White" HorizontalOptions="CenterAndExpand" Text="{Binding Converter={StaticResource converter}}"/>
+                                                </StackLayout>
+                                            </DataTemplate>
+                                        </syncfusioncharts:ChartDataMarker.LabelTemplate>
+                                    </syncfusioncharts:ChartDataMarker>
+                                </syncfusioncharts:PieSeries.DataMarker>
+                            </syncfusioncharts:PieSeries>
+                        </syncfusioncharts:SfChart.Series>
+                    </syncfusioncharts:SfChart>
+                    </Frame>
+                    <Frame HasShadow="True">
+                    <syncfusioncharts:SfChart x:Name="Status" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <syncfusioncharts:SfChart.Title>
+                                <syncfusioncharts:ChartTitle Text="Status List" TextAlignment="Start" FontAttributes="Bold" FontSize="18"/>
+                        </syncfusioncharts:SfChart.Title>
+                        <syncfusioncharts:SfChart.BindingContext>
+                            <local:DashboardPageViewModel />
+                        </syncfusioncharts:SfChart.BindingContext>
+                        <syncfusioncharts:SfChart.ChartBehaviors>
+                            <syncfusioncharts:ChartTooltipBehavior />
+                        </syncfusioncharts:SfChart.ChartBehaviors>
+                        <syncfusioncharts:SfChart.Legend>
+                            <syncfusioncharts:ChartLegend IconHeight="14" IconWidth="14" OverflowMode="Wrap" DockPosition="Top" ToggleSeriesVisibility="True"/>
+                        </syncfusioncharts:SfChart.Legend>
+                        <syncfusioncharts:SfChart.Series>
+                            <syncfusioncharts:PieSeries x:Name="StatusPieSeries" EnableAnimation="True" ExplodeOnTouch="True" ItemsSource="{Binding StatusData}" XBindingPath="Status" YBindingPath="StatusCount">
+                                <syncfusioncharts:PieSeries.ColorModel>
+                                    <syncfusioncharts:ChartColorModel Palette="Natural"/>
+                                </syncfusioncharts:PieSeries.ColorModel>
+                                <syncfusioncharts:PieSeries.DataMarker>
+                                    <syncfusioncharts:ChartDataMarker>
+                                        <syncfusioncharts:ChartDataMarker.LabelTemplate>
+                                            <DataTemplate>
+                                                <StackLayout Orientation="Vertical">
+                                                    <Label FontSize="12" TextColor="White" HorizontalOptions="CenterAndExpand" Text="{Binding Converter={StaticResource converter}, ConverterParameter='Status'}" />
+                                                    <Label FontSize="12" TextColor="White" HorizontalOptions="CenterAndExpand" Text="{Binding Converter={StaticResource converter}}"/>
+                                                </StackLayout>
+                                            </DataTemplate>
+                                        </syncfusioncharts:ChartDataMarker.LabelTemplate>
+                                    </syncfusioncharts:ChartDataMarker>
+                                </syncfusioncharts:PieSeries.DataMarker>
+                            </syncfusioncharts:PieSeries>
+                        </syncfusioncharts:SfChart.Series>
+                    </syncfusioncharts:SfChart>
+                    </Frame>
+                </StackLayout>
+            </ScrollView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

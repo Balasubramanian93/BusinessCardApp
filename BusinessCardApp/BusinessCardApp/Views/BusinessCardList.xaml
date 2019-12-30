@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:sfavatar="clr-namespace:Syncfusion.XForms.AvatarView;assembly=Syncfusion.Core.XForms"
+             xmlns:local="clr-namespace:BusinessCardApp.ViewModels"
+             x:Class="BusinessCardApp.Views.BusinessCardList"
+             NavigationPage.HasNavigationBar="true"
+             BackgroundColor="White" Padding="10"
+             Title="Requested BusinessCards">
+    <ContentPage.BindingContext>
+        <local:BusinessCardListViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <Grid>
+            <ListView ItemsSource="{Binding BusinessCardListData}" HasUnevenRows="True" ItemTapped="ListView_ItemTapped">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell Height="75">
+                            <StackLayout Orientation="Horizontal">
+                                <sfavatar:SfAvatarView ContentType="Initials"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center"
+                               InitialsType="DoubleCharacter"
+                               AvatarName="Steve Smith"
+                               InitialsColor="white" 
+                               WidthRequest="50"
+                               FontAttributes="Bold"
+                               HeightRequest="50"
+                               CornerRadius="25"          
+                               BackgroundColor="#00695B"/>
+
+                                <Grid VerticalOptions="Center">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Name}" FontSize="Medium" VerticalOptions="Center"/>
+                                    <StackLayout Orientation="Horizontal" Grid.Row="1" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Start">
+                                        <Label Text="Count -" FontSize="Small" VerticalOptions="Center"/>
+                                        <Label Text="{Binding Name}" FontSize="Small" VerticalOptions="Center"/>
+                                    </StackLayout>
+                                    <Label Grid.Row="1" Grid.Column="1" HorizontalOptions="Start" Text="{Binding Status}" TextColor="Green" VerticalOptions="Center"/>
+                                </Grid>
+                                <Button ImageSource="Edit.png" HorizontalOptions="EndAndExpand" HeightRequest="50" WidthRequest="50" BackgroundColor="Transparent" Clicked="ImageButton_Clicked"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Frame WidthRequest="50" HeightRequest="50" Padding="0" CornerRadius="25"  HasShadow="true" HorizontalOptions="End" VerticalOptions="End" BackgroundColor="#03DAC4" IsClippedToBounds="True">
+                <Button ImageSource="Add.png" Clicked="Button_Clicked" BackgroundColor="Transparent" WidthRequest="50" HeightRequest="50" CornerRadius="25"/>
+            </Frame>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

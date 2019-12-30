@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="BusinessCardApp.TextInputLayout"
+             x:Name="this">
+    <ContentView.Content>
+        <Frame CornerRadius="10" BorderColor="Black" HasShadow="true" VerticalOptions="Center" HeightRequest="46"
+               Padding="0">
+            <Grid>
+                <Entry x:Name="EntryField" 
+                   Completed="Handle_Completed" 
+                   Text="{Binding Text, Source={x:Reference this}}" 
+                   ReturnType="{Binding ReturnType, Source={x:Reference this}}"
+                   IsPassword="{Binding IsPassword, Source={x:Reference this}}"
+                   Keyboard="{Binding Keyboard, Source={x:Reference this}}"
+                   TextColor="#374955" 
+                   Unfocused="Handle_Unfocused" 
+                   Focused="Handle_Focused" VerticalOptions="End">
+                </Entry>
+                <Label x:Name="LabelTitle" BackgroundColor="Transparent"
+                   Text="{Binding Title, Source={x:Reference this}}" TextColor="#5D98B8" VerticalOptions="Center">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Handle_Tapped" />
+                    </Label.GestureRecognizers>
+                </Label>
+            </Grid>
+        </Frame>
+
+
+    </ContentView.Content>
+</ContentView>
